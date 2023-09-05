@@ -1,6 +1,6 @@
 import datetime, os, secrets
 from dotenv import load_dotenv
-from Database.crud import *
+from crud import *
 
 load_dotenv()
 

@@ -36,3 +36,11 @@ def get_users_from_room(db, room_id):
         return rooms.find_one({"_id": room_id})["users"]
     except:
         print('Failed to get rooms users')
+
+def get_room_id_from_user(db, user_id):
+    try:
+        rooms = db.rooms
+        return rooms.find_one({"users": {"$in": [user_id]}})["_id"]
+    except:
+        print("Failed to find room user is in")
+
