@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO
 
-from Database.crud import add_room, add_user_to_room, remove_user_from_room, delete_room, get_users_from_room
+from Database.crud import add_room, add_user_to_room, remove_user_from_room, delete_room, get_users_from_room, get_room_id_from_user
 from Database.config import client
 
 app = Flask(__name__)
@@ -26,7 +26,14 @@ def onDisconnectCallback(sid, data):
 @socketio.on('message')
 def onMessageCallback(data):
   sid = request.sid
-  socketio.emit('message', {data: data.message}, room = sid)
+  response = get_room_id_from_user(sid)
+  if (response == 0):
+    return
+  else:
+     for id in response:
+        if (id == sid):
+          continue
+        socketio.emit('message', {'data': data.message}, room = id)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
