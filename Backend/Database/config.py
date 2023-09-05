@@ -18,4 +18,14 @@ try:
 except Exception as e:
     print(e)
 
-add_room(client, secrets.token_hex(30))
+db = client.WebRTCChat
+
+new_room_id = secrets.token_hex(5)
+add_room(db, new_room_id)
+add_user_to_room(db, secrets.token_hex(5), new_room_id)
+add_user_to_room(db, secrets.token_hex(5), new_room_id)
+add_user_to_room(db, secrets.token_hex(5), new_room_id)
+add_user_to_room(db, secrets.token_hex(5), new_room_id)
+add_user_to_room(db, secrets.token_hex(5), new_room_id)
+
+print(get_users_from_room(db, new_room_id))
