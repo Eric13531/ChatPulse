@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Sora');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lexend');
+@import url('https://fonts.googleapis.com/css?family=Lexend+Exa');
+@import url('https://fonts.googleapis.com/css?family=Tilt+Prism');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('../../public/fonts/Akrobat/Akrobat-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('../../public/fonts/Akrobat/Akrobat-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  src: url('../../public/fonts/Akrobat/Akrobat-Light.otf') format('opentype');
+  font-weight: lighter;
+  font-style: normal;
+}
