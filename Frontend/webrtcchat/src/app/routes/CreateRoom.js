@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./CreateRoom.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
+
+import socket from "../components/socket";
 
 
 
@@ -10,6 +12,13 @@ const CreateRoom = () => {
   
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    socket.on('connectCallback', (data) => {
+      console.log("Connected!");
+      window.location.href = '/room';
+    })
+  }, [])
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -47,7 +56,8 @@ const CreateRoom = () => {
       // You can do something with the valid input here, e.g., send it to a server.
       // For now, let's just display it in the console.
       console.log('Submitted value:', inputValue);
-      window.location.href = '/room'
+      socket.emit('connected', { room: inputValue });
+      // window.location.href = '/room'
     }
   };
 

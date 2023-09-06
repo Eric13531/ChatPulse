@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./FrontPage.css"
 
+import socket from "../components/socket";
+
 const FrontPage = () => {
+  const [showText, setShowText] = useState(false)
+  const [inputValue, setInputValue] = useState("");
   const newRoom = () => {
     window.location.href = '/create'
   }
@@ -13,6 +17,13 @@ const FrontPage = () => {
     });
   });
 
+  useEffect(() => {
+    socket.on('connectCallback', (data) => {
+      console.log("Connected!");
+      window.location.href = '/room';
+    })
+  }, [])
+
   return (
     <div className="flex-container">
       <div className="header-container">
@@ -23,11 +34,27 @@ const FrontPage = () => {
         <button onClick={newRoom} className="button btn btn-primary button blur-effect">
           <div className= "button-label">CREATE SERVER</div>
         </button>
+        {showText ? 
+        <form onSubmit={() => {
+              socket.emit('connected', { room: inputValue });
+        }}>
+        <input 
+              className="name-input"
+              type="text"
+              id="text-input"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+
+              style={{"padding-left": '0.4vw', "padding-bottom": "0.2vh"}}></input> 
+              <button type="submit"></button>
+        </form>
+         : 
         <button onClick={() => {
-          window.location.href = '/room'
+          setShowText(true);
         }} className="btn btn-primary button blur-effect">
           <div className= "button-label">ENTER SERVER</div>
-        </button>
+        </button>}
+        
       </div>
     </div>  
   );

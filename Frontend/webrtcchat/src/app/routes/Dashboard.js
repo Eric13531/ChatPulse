@@ -1,7 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Dashboard.css"
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
+
+import socket from "../components/socket";
 
 
 
@@ -12,6 +14,12 @@ const CreateRoom = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    socket.on('message', (data) => {
+      console.log("Message: ", data.message);
+    })
+  }, [])
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -55,6 +63,7 @@ const CreateRoom = () => {
         return [...prevState, {name: "Eric Zhang", content: inputValue}]
       })
       console.log(messages);
+      socket.emit("message", {message: inputValue})
     }
   };
 
@@ -63,6 +72,10 @@ const CreateRoom = () => {
       <div className="header-container">
         <div className="header">Header Here {focus}</div>
         {/* <FontAwesomeIcon icon="check-square" /> */}
+        <button onClick={() => {
+          socket.emit("disconnect");
+          window.location.href = '/';
+        }}></button>
       </div>
       <div className="body">
         {messages.map((key, index) => {
