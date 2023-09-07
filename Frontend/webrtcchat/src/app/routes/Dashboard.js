@@ -69,13 +69,15 @@ const CreateRoom = () => {
 
   return (
     <div className="flex-container-msg">
-      <div className="header-container">
-        <div className="header">Header Here {focus}</div>
+      <div className="header-container-chat">
+        <div className="header create">Header Here {focus}</div>
         {/* <FontAwesomeIcon icon="check-square" /> */}
-        <button onClick={() => {
-          socket.emit("disconnect");
+        <button className="button btn-disconnect btn" 
+        onClick={() => {
+          // TODO: Socket is a reserved name!
+          // socket.emit("disconnect");
           window.location.href = '/';
-        }}></button>
+        }}>Disconnect</button>
       </div>
       <div className="body">
         {messages.map((key, index) => {

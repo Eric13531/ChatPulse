@@ -35,18 +35,22 @@ const FrontPage = () => {
           <div className= "button-label">CREATE SERVER</div>
         </button>
         {showText ? 
-        <form onSubmit={() => {
+        <form className="form front-page"
+        onSubmit={() => {
               socket.emit('connected', { room: inputValue });
+              // Dev comment:
+              window.location.href = '/room';
         }}>
         <input 
-              className="name-input"
+              className="name-input front-page"
               type="text"
               id="text-input"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
 
               style={{"padding-left": '0.4vw', "padding-bottom": "0.2vh"}}></input> 
-              <button type="submit"></button>
+
+              <button type="submit" className="btn button btn-secondary">SUBMIT</button>
         </form>
          : 
         <button onClick={() => {

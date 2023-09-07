@@ -51,6 +51,15 @@
   justify-content: center; */
 }
 
+.btn.btn-primary.button.create {
+  margin: 0;
+}
+
+.btn.btn-primary.button.create:active {
+  margin: 0;
+  transform: scale(0.95);
+}
+
 .regen.btn {
   color: #ffffff;
   /* flex: 0 1000000000 100%; */
@@ -178,6 +187,10 @@
   border-radius: 1.2vh;
   border-width: 1.77px;
   margin: 3vh;
+  margin-right: 0;
+  flex-grow: 1;
+
+  height: 3rem;
 }
 
 .error-message {
@@ -187,4 +200,11 @@
   font-weight: 800;
   text-align: center;
   margin-top: -1.8vh;
+}
+
+.second-button {
+  margin-top: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

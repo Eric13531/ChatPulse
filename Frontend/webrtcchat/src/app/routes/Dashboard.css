@@ -59,13 +59,13 @@
   
 }
 
-.header-container {
+.header-container-chat {
   /* display: flex;
   justify-content: center; */
   display: flex;
   background-color: #372c2e;
   width:100vw;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 6vh;
@@ -96,4 +96,103 @@
   margin-top: 2vh;
   /* display: flex;
   justify-content: center; */
+}
+
+
+
+.header.create {
+  margin-right: 60vw;
+}
+
+.button.btn-disconnect {
+  /* display: flex;
+  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #ffffff;
+  margin: 3vh;
+  width: 10vw;
+  height: 30px;
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn.blur:focus{
+  /* display: flex;
+  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #ffffff;
+  margin: 3vh;
+  width: 10vw;
+  height: 30px;
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn.btn-disconnect:active {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin: 3vh;
+  transform: scale(0.95);
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-disconnect:hover {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin: 3vh;
+  width: 10vw;
+  height: 30px;
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-disconnect:focus {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin: 3vh;
+  width: 10vw;
+  height: 30px;
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-disconnect:visited {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #8C5E58;
+  margin: 3vh;
+  width: 10vw;
+  height: 30px;
+  font-family: 'Lexend Exa';
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
 }

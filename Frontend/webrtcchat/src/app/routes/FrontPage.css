@@ -12,6 +12,23 @@
 
 }
 
+.content {
+  width: 55vw;
+}
+
+.form.front-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 55vw;
+  margin: 3vh;
+}
+
+.name-input.front-page {
+  flex-grow: 1;
+  margin: 0;
+}
+
 .header-container {
   /* display: flex;
   justify-content: center; */
@@ -140,4 +157,98 @@
 }
 .button-label{
   font-size: 3.8vh;
+}
+
+
+
+
+
+.button.btn-secondary {
+  /* display: flex;
+  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #ffffff;
+  margin-left: 3vh;
+  width: 15rem;
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-secondary.blur:focus{
+  /* display: flex;
+  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #ffffff;
+  margin-left: 3vh;
+  width: 15rem;
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn.btn-secondary:active {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin-left: 3vh;
+  transform: scale(0.95);
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-secondary:hover {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin-left: 3vh;
+  width: 15rem;
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-secondary:focus {
+  background-color: #563727;
+  border-color: white;
+  color: #ffffff;
+  margin-left: 3vh;
+  width: 15rem;
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
+}
+
+.button.btn-secondary:visited {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: white;
+  color: #8C5E58;
+  margin: 3vh;
+  width: 15rem;
+  margin-right: 0;
+  margin-top: 0;
+  height: 11vh;
+  font-family: 'Lexend Exa';
+  font-size: 3.3vh;
+  font-weight: 800;
+  border-radius: 1.2vh;
+  border-width: 1.77px;
 }

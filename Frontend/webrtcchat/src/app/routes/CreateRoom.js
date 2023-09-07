@@ -57,7 +57,8 @@ const CreateRoom = () => {
       // For now, let's just display it in the console.
       console.log('Submitted value:', inputValue);
       socket.emit('connected', { room: inputValue });
-      // window.location.href = '/room'
+      // Dev comment:
+      window.location.href = '/room'
     }
   };
 
@@ -85,7 +86,7 @@ const CreateRoom = () => {
           </div>
           {errorMessage && <div className="error-message">{errorMessage}</div>}
           <div className="second-button">
-            <button className="btn btn-primary button blur-effect" type="submit">
+            <button className="btn btn-primary button blur-effect create" type="submit">
               <div className= "button-label2">CREATE SERVER</div>
             </button>
           </div>
