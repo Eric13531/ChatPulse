@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "./CreateRoom.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import socket from "../components/socketService";
+import SocketContext from "../components/socketContext";
 // import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -13,11 +14,15 @@ const CreateRoom = () => {
   
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
+
+  const socket = useContext(SocketContext)
 
   useEffect(() => {
     socket.on('connectCallback', (data) => {
       console.log("Connected!");
-      window.location.href = '/room';
+      // window.location.href = '/room';
+      navigate('/room')
     })
 
     // onConnected((data) => {
@@ -62,6 +67,7 @@ const CreateRoom = () => {
       // You can do something with the valid input here, e.g., send it to a server.
       // For now, let's just display it in the console.
       console.log('Submitted value:', inputValue);
+      console.log(socket.id)
       socket.emit('connected', { room: inputValue });
       // emitConnected({room: inputValue});
       // Dev comment:

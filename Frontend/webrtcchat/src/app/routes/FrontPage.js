@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./FrontPage.css"
 
-import socket from "../components/socketService";
+import SocketContext from "../components/socketContext";
 // import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
+import { Link, useNavigate } from "react-router-dom";
 
 const FrontPage = () => {
   const [showText, setShowText] = useState(false)
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate(); 
+  const socket = useContext(SocketContext)
+
   const newRoom = () => {
-    window.location.href = '/create'
+    console.log(socket.id)
+    // window.location.href = '/create'
+    navigate('/create')
   }
 
   const blurElements = document.querySelectorAll('.blur-effect');
@@ -21,8 +27,11 @@ const FrontPage = () => {
   useEffect(() => {
     socket.on('connectCallback', (data) => {
       console.log("Connected!");
-      window.location.href = '/room';
+      // window.location.href = '/room';
+      navigate('/room')
     })
+
+    console.log(socket.id);
 
     // onConnected((data) => {
     //   console.log("Connected!")
@@ -45,6 +54,7 @@ const FrontPage = () => {
         onSubmit={(e) => {
               e.preventDefault();
               console.log("emitted value:", inputValue)
+              console.log(socket.id)
               socket.emit('connected', { room: inputValue });
               // emitConnected({room: inputValue})
               

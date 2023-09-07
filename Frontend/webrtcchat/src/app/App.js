@@ -8,15 +8,23 @@ import FrontPage from "./routes/FrontPage.js";
 // import logo from './logo.svg';
 import './App.css';
 
+import SocketContext from "./components/socketContext";
+
+import { io } from 'socket.io-client';
+
+const socket = io("http://localhost:5000");
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<FrontPage />}/>
-        <Route path="/create" element={<CreateRoom />}/>
-        <Route path="/room" element={<Dashboard />}/>
-      </Routes>
-    </Router>
+    <SocketContext.Provider value={socket}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<FrontPage />}/>
+          <Route path="/create" element={<CreateRoom />}/>
+          <Route path="/room" element={<Dashboard />}/>
+        </Routes>
+      </Router>
+    </SocketContext.Provider>
   );
 }
 

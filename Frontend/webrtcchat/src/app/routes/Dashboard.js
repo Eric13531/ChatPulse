@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "./Dashboard.css"
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import socket from "../components/socketService"
+import SocketContext from "../components/socketContext"
 // import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
-
+import { Link, useNavigate } from "react-router-dom";
 
 
 const CreateRoom = () => {
@@ -15,6 +15,9 @@ const CreateRoom = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [messages, setMessages] = useState([]);
+  const navigate = useNavigate();
+
+  const socket = useContext(SocketContext)
 
   useEffect(() => {
     socket.on('message', (data) => {
@@ -63,6 +66,7 @@ const CreateRoom = () => {
       // You can do something with the valid input here, e.g., send it to a server.
       // For now, let's just display it in the console.
       console.log('Submitted value:', inputValue);
+      console.log(socket.id)
       setInputValue("");
       setMessages((prevState) => {
         return [...prevState, {name: "Eric Zhang", content: inputValue}]
@@ -82,7 +86,8 @@ const CreateRoom = () => {
           // TODO: Socket is a reserved name!
           socket.emit("disconnected");
           // emitDisconnect();
-          window.location.href = '/';
+          // window.location.href = '/';
+          navigate('/')
         }}>Disconnect</button>
       </div>
       <div className="body">
