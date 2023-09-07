@@ -3,9 +3,9 @@
 **ChatPulse** is a fullstack web chat app that allows for real-time messaging between users. Supporting creating and joining different rooms, along with usernames!
 
 Here is a snapshot of what messaging looks like!
-![image](https://github.com/PratyushMakkar/WebRTCChat/assets/93229991/5003fdc3-0657-4e84-8530-35f5b0eb53e0)
-![image](https://github.com/PratyushMakkar/WebRTCChat/assets/93229991/9dd26ed4-67a5-4233-af76-2e5bd47f8035)
-![image](https://github.com/PratyushMakkar/WebRTCChat/assets/93229991/381f8d06-c4f4-4b48-9138-9f85e50a90b1)
+![homepage](./utils/images/home.png)
+![creating a room](./utils/images/create.png)
+![messaging](./utils/images/messaging.png)
 
 ## :pushpin: Set up 
 ### Technical
