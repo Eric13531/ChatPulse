@@ -3,7 +3,8 @@ import "./Dashboard.css"
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import socket from "../components/socket";
+import socket from "../components/socketService"
+// import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
 
 
 
@@ -19,6 +20,10 @@ const CreateRoom = () => {
     socket.on('message', (data) => {
       console.log("Message: ", data.message);
     })
+
+    // onMessage((data) => {
+    //   console.log("Message: ", data.message)
+    // })
   }, [])
 
   const handleFocus = () => {
@@ -64,6 +69,7 @@ const CreateRoom = () => {
       })
       console.log(messages);
       socket.emit("message", {message: inputValue})
+      // emitMessage({message: inputValue})
     }
   };
 
@@ -71,11 +77,11 @@ const CreateRoom = () => {
     <div className="flex-container-msg">
       <div className="header-container-chat">
         <div className="header create">Header Here {focus}</div>
-        {/* <FontAwesomeIcon icon="check-square" /> */}
         <button className="button btn-disconnect btn" 
         onClick={() => {
           // TODO: Socket is a reserved name!
-          // socket.emit("disconnect");
+          socket.emit("disconnected");
+          // emitDisconnect();
           window.location.href = '/';
         }}>Disconnect</button>
       </div>

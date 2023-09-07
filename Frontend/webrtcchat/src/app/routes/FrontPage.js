@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./FrontPage.css"
 
-import socket from "../components/socket";
+import socket from "../components/socketService";
+// import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
 
 const FrontPage = () => {
   const [showText, setShowText] = useState(false)
@@ -22,6 +23,11 @@ const FrontPage = () => {
       console.log("Connected!");
       window.location.href = '/room';
     })
+
+    // onConnected((data) => {
+    //   console.log("Connected!")
+    //   window.location.href = '/room'
+    // })
   }, [])
 
   return (
@@ -36,10 +42,14 @@ const FrontPage = () => {
         </button>
         {showText ? 
         <form className="form front-page"
-        onSubmit={() => {
+        onSubmit={(e) => {
+              e.preventDefault();
+              console.log("emitted value:", inputValue)
               socket.emit('connected', { room: inputValue });
+              // emitConnected({room: inputValue})
+              
               // Dev comment:
-              window.location.href = '/room';
+              // window.location.href = '/room';
         }}>
         <input 
               className="name-input front-page"

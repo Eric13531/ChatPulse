@@ -3,7 +3,8 @@ import "./CreateRoom.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
-import socket from "../components/socket";
+import socket from "../components/socketService";
+// import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
 
 
 
@@ -18,6 +19,11 @@ const CreateRoom = () => {
       console.log("Connected!");
       window.location.href = '/room';
     })
+
+    // onConnected((data) => {
+    //   console.log("Connected!");
+    //   window.location.href = '/room'
+    // })
   }, [])
 
   const handleFocus = () => {
@@ -57,8 +63,9 @@ const CreateRoom = () => {
       // For now, let's just display it in the console.
       console.log('Submitted value:', inputValue);
       socket.emit('connected', { room: inputValue });
+      // emitConnected({room: inputValue});
       // Dev comment:
-      window.location.href = '/room'
+      // window.location.href = '/room'
     }
   };
 
@@ -66,7 +73,6 @@ const CreateRoom = () => {
     <div className="flex-container">
       <div className="header-container">
         <div className="header">Header Here {focus}</div>
-        <FontAwesomeIcon icon="check-square" />
       </div>
       <h1 className="title title-create">Create Room</h1>
       <div className="content" >

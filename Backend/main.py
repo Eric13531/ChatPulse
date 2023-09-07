@@ -11,29 +11,29 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 @socketio.on('connect')
-def onConnectCallback(sid, data):
-    socketio.emit('acknowledge', data = {'status': 'success'}, room = sid)
+def handle_connect(sid):
+  socketio.emit('acknowledge', data = {'status': 'success'}, room = sid)
 
 @socketio.on('connected')
-def onConnectCallback(data):
-    add_user_to_room(client, request.sid, data.room)
-    socketio.emit('connectCallback', {'data': request.sid }, room= request.sid)
+def handle_connected(data):
+  add_user_to_room(client, request.sid, data['room'])
+  socketio.emit('connectCallback', {'data': request.sid }, room= request.sid)
 
-@socketio.on('disconnect')
-def onDisconnectCallback(sid, data):
-  remove_user_from_room(client, sid, data.room)
+@socketio.on('disconnected')
+def handle_disconnect(data):
+  remove_user_from_room(client, request.sid, data['room'])
 
 @socketio.on('message')
-def onMessageCallback(data):
+def handle_message(data):
   sid = request.sid
-  response = get_room_id_from_user(sid)
+  response = get_room_id_from_user(client, sid)
   if (response == 0):
     return
   else:
      for id in response:
         if (id == sid):
           continue
-        socketio.emit('message', {'data': data.message}, room = id)
+        socketio.emit('message', {'data': data['message']}, room = id)
 
 if __name__ == '__main__':
     socketio.run(app, debug=True)
