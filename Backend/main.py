@@ -42,7 +42,7 @@ def handle_message(data):
         for id in users:
             if (id == sid):
                 continue
-            socketio.emit("message", {"data": data["message"]}, room = id)
+            socketio.emit("message", {"message" : data["message"]}, room = id)
 
 
 if __name__ == "__main__":

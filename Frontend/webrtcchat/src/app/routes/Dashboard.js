@@ -21,7 +21,9 @@ const CreateRoom = () => {
 
   useEffect(() => {
     socket.on('message', (data) => {
-      console.log("Message: ", data.message);
+      setMessages((prevState) => {
+        return [...prevState, {name: "Eric Zhang", content: data.message}]
+      })
     })
 
     // onMessage((data) => {
