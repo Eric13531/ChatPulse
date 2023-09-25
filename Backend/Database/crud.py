@@ -19,6 +19,9 @@ def add_user_to_room(db, user_id, room_id):
         add_room(db, room_id)
     try:
         rooms = db.rooms
+        data = rooms.find()
+        for item in data:
+            print("get room id", item)
         rooms.update_one({"_id": room_id}, {"$push": {"users": user_id}})
 
     except:
@@ -44,6 +47,9 @@ def get_users_from_room(db, room_id):
 def get_room_id_from_user(db, user_id):
     try:
         rooms = db.rooms
+        data = rooms.find()
+        for item in data:
+            print("get room id", item)
         return rooms.find_one({"users": {"$in": [user_id]}})["_id"]
     except:
         print("Failed to find room user is in")

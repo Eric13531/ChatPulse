@@ -44,7 +44,7 @@ const FrontPage = () => {
       <div className="header-container">
         <div className="header">Header Here</div>
       </div>
-      <h1 className="title">Web RTC App</h1>
+      <h1 className="title">ChatPulse</h1>
       <div className="content" >
         <button onClick={newRoom} className="button btn btn-primary button blur-effect">
           <div className= "button-label">CREATE SERVER</div>
