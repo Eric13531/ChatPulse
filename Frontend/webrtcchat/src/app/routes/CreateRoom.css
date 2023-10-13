@@ -25,6 +25,19 @@
   border-bottom: 2px solid white;
 }
 
+.header-container.create-room {
+  /* display: flex;
+  justify-content: center; */
+  display: flex;
+  background-color: #372c2e;
+  width:100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 6vh;
+  border-bottom: 0px solid white;
+}
+
 .header-create {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
@@ -178,6 +191,7 @@
 }
 
 .name-input {
+  width: 100%;
   color: #DE9e48;
   font-family: 'Lexend Exa';
   font-size: 3.3vh;

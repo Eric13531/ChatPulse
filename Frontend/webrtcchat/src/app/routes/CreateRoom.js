@@ -77,15 +77,15 @@ const CreateRoom = () => {
 
   return (
     <div className="flex-container">
-      <div className="header-container">
-        <div className="header">Header Here {focus}</div>
+      <div className="header-container create-room">
+        <div className="header"></div>
       </div>
       <h1 className="title title-create">Create Room</h1>
       <div className="content" >
         {/* <div className="room-name"> */}
         <form onSubmit={handleSubmit}>
           <div className="input">
-            <label htmlFor="text-input" className="label">Enter Name:</label>
+            <label htmlFor="text-input" className="label">Server:</label>
             <input
               className="name-input"
               type="text"

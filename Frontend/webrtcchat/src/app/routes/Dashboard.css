@@ -22,10 +22,12 @@
 .msg {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 }
 
 .msg-info {
   font-weight: bold;
+  margin-bottom: -2px;
 }
 
 .msg-content {
@@ -35,7 +37,7 @@
 .msg-enter {
   margin-bottom: 4vh;
   height:7vh;
-  width: 60vw;
+  width: 55vw;
   margin-left: auto;
   margin-right: auto;
 
@@ -43,16 +45,30 @@
 
 .msg-inner {
   display: flex;
+  height:48px;
+  border-radius: 2px;
   /* width: 80vw; */
   flex-direction: row;
 }
 
 .text {
-  flex: 1 1 100%
+  flex: 1 1 100%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 2.2px solid #563727;
+  padding-left: 10px;
+  font-size: 18px;
 }
 
 .send {
   width: 8vw;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 2.2px solid #563727;
+  margin-left: -1px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 2px;
 }
 
 .flex-item {
@@ -101,7 +117,6 @@
 
 
 .header.create {
-  margin-right: 60vw;
 }
 
 .button.btn-disconnect {
@@ -111,11 +126,11 @@
   border-color: white;
   color: #ffffff;
   margin: 3vh;
-  width: 10vw;
+  width: 200px;
   height: 30px;
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;
@@ -132,7 +147,7 @@
   height: 30px;
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;
@@ -146,7 +161,7 @@
   transform: scale(0.95);
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;
@@ -157,11 +172,10 @@
   border-color: white;
   color: #ffffff;
   margin: 3vh;
-  width: 10vw;
-  height: 30px;
+  transform: scale(0.95);
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;
@@ -172,11 +186,10 @@
   border-color: white;
   color: #ffffff;
   margin: 3vh;
-  width: 10vw;
-  height: 30px;
+  transform: scale(0.95);
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;
@@ -187,11 +200,10 @@
   border-color: white;
   color: #8C5E58;
   margin: 3vh;
-  width: 10vw;
-  height: 30px;
+  transform: scale(0.95);
   font-family: 'Lexend Exa';
   text-align: center;
-  font-size: 2vh;
+  font-size: 20.5px;
   font-weight: 800;
   border-radius: 1.2vh;
   border-width: 1.77px;

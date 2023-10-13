@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import "./Dashboard.css"
+import "./Dashboard.css";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,12 +7,17 @@ import SocketContext from "../components/socketContext"
 // import {connectSocket, disconnectSocket, onConnected, emitConnected, onMessage, emitMessage, emitDisconnect} from "../components/socketService"
 import { Link, useNavigate } from "react-router-dom";
 
+import axios from 'axios';
 
-const CreateRoom = () => {
+
+const Dashboard = () => {
   const [isFocused, setIsFocused] = useState(false)
   
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [connectionError, setConnectionError] = useState('Connection Stable');
+
+  const [username, setUsername] = useState('---')
 
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
@@ -21,15 +26,45 @@ const CreateRoom = () => {
 
   useEffect(() => {
     socket.on('message', (data) => {
-      setMessages((prevState) => {
-        return [...prevState, {name: "Eric Zhang", content: data.message}]
-      })
+      console.log(data);
+      if (data.error) {
+        console.log("Connection Error")
+        setConnectionError("You have lost connection. Please disconnect and rejoin")
+      } else {
+        console.log("Why is this working")
+        setMessages((prevState) => {
+          return [...prevState, {name: data.username, content: data.message}]
+        })
+      }
     })
+
+    socket.on('username', (data) => {
+      console.log(data)
+      if (data.username == 0) {
+        setUsername("---")
+      } else {
+        setUsername(data.username)
+      }
+    })
+    // TODO: What if getUsername is called when user first sends message?
+    getUsername()
+
+    // setRandomUsername()
 
     // onMessage((data) => {
     //   console.log("Message: ", data.message)
     // })
   }, [])
+
+  const getUsername = async () => {
+    try {
+      console.log("SENT USERNAME")
+      socket.emit('username', {"username": ""})
+    } catch (e) {
+      console.log("Username error", e)
+      setUsername("UsernameRetrievalError")
+    }
+  }
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -71,10 +106,10 @@ const CreateRoom = () => {
       console.log(socket.id)
       setInputValue("");
       setMessages((prevState) => {
-        return [...prevState, {name: "Eric Zhang", content: inputValue}]
+        return [...prevState, {name: username, content: inputValue}]
       })
       console.log(messages);
-      socket.emit("message", {message: inputValue})
+      socket.emit("message", {username: username, message: inputValue})
       // emitMessage({message: inputValue})
     }
   };
@@ -82,7 +117,7 @@ const CreateRoom = () => {
   return (
     <div className="flex-container-msg">
       <div className="header-container-chat">
-        <div className="header create">Header Here {focus}</div>
+        <div className="header create">{connectionError}</div>
         <button className="button btn-disconnect btn" 
         onClick={() => {
           // TODO: Socket is a reserved name!
@@ -95,7 +130,7 @@ const CreateRoom = () => {
       <div className="body">
         {messages.map((key, index) => {
           return (
-            <div classname="msg">
+            <div className="msg">
               <div className="msg-info">{key.name}</div>
               <div className="msg-content"
               style={{ overflowWrap: 'break-word', wordWrap: 'break-word', whiteSpace: 'normal', maxWidth: '100%', wordBreak: 'break-all' }}>
@@ -119,4 +154,4 @@ const CreateRoom = () => {
   );
 };
 
-export default CreateRoom;
+export default Dashboard;

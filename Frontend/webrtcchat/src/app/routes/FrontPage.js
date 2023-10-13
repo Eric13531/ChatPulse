@@ -41,14 +41,14 @@ const FrontPage = () => {
 
   return (
     <div className="flex-container">
-      <div className="header-container">
-        <div className="header">Header Here</div>
+      <div className="header-container front-page">
+        <div className="header"></div>
       </div>
       <h1 className="title">ChatPulse</h1>
       <div className="content" >
-        <button onClick={newRoom} className="button btn btn-primary button blur-effect">
+        {/* <button onClick={newRoom} className="button btn btn-primary button blur-effect">
           <div className= "button-label">CREATE SERVER</div>
-        </button>
+        </button> */}
         {showText ? 
         <form className="form front-page"
         onSubmit={(e) => {

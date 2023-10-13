@@ -21,11 +21,13 @@
   flex-direction: row;
   align-items: center;
   width: 55vw;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 .name-input.front-page {
-  flex-grow: 1;
+  flex: 1;
+  width: 100%;
   margin: 0;
 }
 
@@ -42,6 +44,19 @@
   border-bottom: 2px solid white;
 }
 
+.header-container.front-page {
+  /* display: flex;
+  justify-content: center; */
+  display: flex;
+  background-color: #372c2e;
+  width:100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-bottom: 0px solid white;
+}
+
 .header {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-weight: normal;
@@ -52,11 +67,13 @@
 .title {
   /* display: flex;
   justify-content: center; */
+  
   color: #ffffff;
   font-family: 'Akrobat';
   font-weight: bold;
   font-size: 100px;
-  margin-top: 18vh;
+  /* margin-top: 18vh; */
+  margin-top: 25vh;
   text-align: center;
 }
 
@@ -74,7 +91,8 @@
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #ffffff;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 55vw;
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -90,7 +108,8 @@
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #ffffff;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 55vw;
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -104,7 +123,8 @@
   background-color: #563727;
   border-color: white;
   color: #ffffff;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   transform: scale(0.95);
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -118,7 +138,8 @@
   background-color: #563727;
   border-color: white;
   color: #ffffff;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 55vw;
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -132,7 +153,8 @@
   background-color: #563727;
   border-color: white;
   color: #ffffff;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 55vw;
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -146,7 +168,8 @@
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #8C5E58;
-  margin: 3vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   width: 55vw;
   height: 11vh;
   font-family: 'Lexend Exa';
@@ -166,6 +189,7 @@
 .button.btn-secondary {
   /* display: flex;
   justify-content: center; */
+  flex:0.42;
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #ffffff;
@@ -182,6 +206,7 @@
 .button.btn-secondary.blur:focus{
   /* display: flex;
   justify-content: center; */
+  flex:0.42;
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #ffffff;
@@ -196,6 +221,7 @@
 }
 
 .button.btn.btn-secondary:active {
+  flex:0.42;
   background-color: #563727;
   border-color: white;
   color: #ffffff;
@@ -210,6 +236,7 @@
 }
 
 .button.btn-secondary:hover {
+  flex:0.42;
   background-color: #563727;
   border-color: white;
   color: #ffffff;
@@ -224,6 +251,7 @@
 }
 
 .button.btn-secondary:focus {
+  flex:0.42;
   background-color: #563727;
   border-color: white;
   color: #ffffff;
@@ -238,6 +266,7 @@
 }
 
 .button.btn-secondary:visited {
+  flex:0.42;
   background-color: rgba(0, 0, 0, 0);
   border-color: white;
   color: #8C5E58;
