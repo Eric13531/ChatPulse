@@ -92,3 +92,16 @@ def set_username(db, user_id, new_username):
     except:
         print("Failed to set username")
         return 0
+    
+def get_random_word():
+    response = requests.get("https://www.randomlists.com/data/words.json")
+    words = response.json()["data"]
+    return random.choice(words)
+    
+def generate_random_username():
+    word1 = get_random_word()
+    word2 = get_random_word()
+    word3 = get_random_word()
+    
+    random_string = f"{word1.capitalize()}{word2.capitalize()}{word3.capitalize()}"
+    return random_string
