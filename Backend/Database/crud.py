@@ -1,5 +1,5 @@
 import random
-import requests
+import json
 
 def add_room(db, _id):
     try:
@@ -94,9 +94,14 @@ def set_username(db, user_id, new_username):
         return 0
     
 def get_random_word():
-    response = requests.get("https://www.randomlists.com/data/words.json")
-    words = response.json()["data"]
-    return random.choice(words)
+    try:
+        with open("./Database/words.json", "r") as file:
+            words_data = json.load(file)
+            words = words_data["data"]
+        return random.choice(words)
+    except Exception as e:
+        print("ERROR:", e)
+        return "---"
     
 def generate_random_username():
     word1 = get_random_word()
