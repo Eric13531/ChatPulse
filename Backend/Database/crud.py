@@ -1,3 +1,6 @@
+import random
+import requests
+
 def add_room(db, _id):
     try:
         rooms = db.rooms
@@ -23,6 +26,15 @@ def add_user_to_room(db, user_id, room_id):
         for item in data:
             print("get room id", item)
         rooms.update_one({"_id": room_id}, {"$push": {"users": user_id}})
+        
+        users = db.users
+        if (users.find_one({"_id": user_id})) is None:
+            try:
+                username = generate_random_username()
+                users.insert_one({"_id": user_id, "username": username})
+            except: 
+                print("Failed creating user")
+        
 
     except:
         print("Failed to add user to room")
@@ -34,6 +46,13 @@ def remove_user_from_room(db, user_id, room_id):
         rooms.update_one({"_id": room_id}, {"$pull": {"users": user_id}})
     except:
         print("Failed to remove user from room")
+
+def remove_user(db, user_id):
+    try:
+        users = db.users
+        users.delete_one({"_id": user_id})
+    except:
+        print("Failed to remove user")
 
 
 def get_users_from_room(db, room_id):
@@ -53,4 +72,23 @@ def get_room_id_from_user(db, user_id):
         return rooms.find_one({"users": {"$in": [user_id]}})["_id"]
     except:
         print("Failed to find room user is in")
+        return 0
+    
+def get_username(db, user_id):
+    try:
+        users = db.users
+        username = users.find_one({"_id":user_id})["username"]
+        return username
+        
+    except:
+        print("Failed to retrieve username")
+        return 0
+    
+def set_username(db, user_id, new_username):
+    try:
+        users = db.users
+        users.update_one({"_id": user_id}, {"$set": {"username": new_username}})
+        return True
+    except:
+        print("Failed to set username")
         return 0
