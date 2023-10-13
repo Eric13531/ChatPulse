@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO
 import logging
@@ -10,6 +10,9 @@ from Database.crud import (
     delete_room,
     get_users_from_room,
     get_room_id_from_user,
+    remove_user,
+    get_username,
+    set_username
 )
 from Database.config import db
 
@@ -32,6 +35,14 @@ app.logger.addHandler(handler)
 def handle_connect(sid):
     socketio.emit("acknowledge", data = {"status": "success"}, room = request.sid)
 
+@socketio.on("disconnect")
+def handle_disconnect():
+    app.logger.debug("disconnected")
+    app.logger.debug(request.sid)
+    sid = request.sid
+    remove_user_from_room(db, sid, get_room_id_from_user(db, sid))
+    remove_user(db, sid)
+
 @socketio.on("connected")
 def handle_connected(data):
     app.logger.debug("connect")
@@ -41,8 +52,8 @@ def handle_connected(data):
     socketio.emit("connectCallback", {"data": request.sid }, room= request.sid)
 
 @socketio.on("disconnected")
-def handle_disconnect():
-    app.logger.debug("disconnect")
+def handle_disconnected():
+    app.logger.debug("disconnected")
     app.logger.debug(request.sid)
     sid = request.sid
     remove_user_from_room(db, sid, get_room_id_from_user(db, sid))
@@ -54,14 +65,30 @@ def handle_message(data):
     app.logger.debug(request.sid)
     sid = request.sid
     response = get_room_id_from_user(db, sid)
+    if (response == 0):
+        socketio.emit("message", {"error": True}, room = sid)
     users = get_users_from_room(db, response)
+    username = get_username(db, sid)
     if (users == 0):
         return
     else:
         for id in users:
             if (id == sid):
                 continue
-            socketio.emit("message", {"message" : data["message"]}, room = id)
+            socketio.emit("message", {"message" : data["message"], "username": username, "error": False}, room = id)
+
+@socketio.on("username")
+def handle_username(data):
+    sid = request.sid
+    print("handle username", sid)
+    if data["username"] != "":
+        print("Username defined")
+        username = data["username"]
+        set_username(db, sid, username)
+        socketio.emit("username", {"username": username}, room = sid)
+    else:
+        username = get_username(db, sid)
+        socketio.emit("username", {"username": username}, room = sid)
 
 
 if __name__ == "__main__":
