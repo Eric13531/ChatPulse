@@ -19,4 +19,3 @@ except Exception as e:
     print(e)
 
 db = client.ChatPulse
-
