@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO
 import logging
 
-from Database.crud import (
+from Backend.Database.crud import (
     add_room,
     add_user_to_room,
     remove_user_from_room,
@@ -14,7 +14,7 @@ from Database.crud import (
     get_username,
     set_username
 )
-from Database.config import db
+from Backend.Database.config import db
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "vnkdjnfjknfl1232#"
