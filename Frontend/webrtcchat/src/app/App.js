@@ -12,7 +12,7 @@ import SocketContext from "./components/socketContext";
 
 import { io } from 'socket.io-client';
 
-const socket = io("https://chatpulse-flask-wi0j.onrender.com/");
+const socket = io("https://chatpulse-flask-df85bc48b212.herokuapp.com/");
 
 function App() {
   return (

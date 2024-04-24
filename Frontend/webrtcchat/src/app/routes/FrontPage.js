@@ -25,6 +25,8 @@ const FrontPage = () => {
   });
 
   useEffect(() => {
+    console.log("Setup")
+    console.log(socket.id)
     socket.on('connectCallback', (data) => {
       console.log("Connected!");
       // window.location.href = '/room';
