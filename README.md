@@ -2,7 +2,7 @@
 
 **ChatPulse** is a fullstack web chat app that allows for real-time messaging between users. Supporting creating and joining different rooms, along with usernames!
 
-Try it out [here!](https://vercel.com/eric442s-projects/chat-pulse/CCSa1RoLubWUTSL1aWmu4wSYUpVq)
+Try it out [here!](https://chat-pulse-gules.vercel.app/)
 
 Here is a snapshot of what messaging looks like!
 ![homepage](./utils/images/home.png)
