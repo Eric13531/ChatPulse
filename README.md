@@ -1,6 +1,7 @@
 # 💭 ChatPulse
 
-## Try it out [here!](https://chat-pulse-gules.vercel.app/)
+## Try it out [here!](https://chatpulse-one.vercel.app/)
+
 
 **ChatPulse** is a fullstack web chat app that allows for real-time messaging between users. Supporting creating and joining different rooms, along with usernames!
 
