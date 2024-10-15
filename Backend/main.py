@@ -19,8 +19,8 @@ from Database.config import db
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = secrets.token_hex(16)
-socketio = SocketIO(app, cors_allowed_origins="*")
-CORS(app)
+socketio = SocketIO(app, cors_allowed_origins=['https://chatpulse-one.vercel.app', 'http://localhost:3000', 'https://localhost:3000'])
+# CORS(app)
 
 app.logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
@@ -34,14 +34,16 @@ app.logger.addHandler(handler)
 
 
 @socketio.on("connect")
-def handle_connect(sid):
+def handle_connect():
+    app.logger.info("connect")
+    app.logger.info(request.sid)
     socketio.emit("acknowledge", data={"status": "success"}, room=request.sid)
 
 
 @socketio.on("disconnect")
 def handle_disconnect():
-    app.logger.debug("disconnected")
-    app.logger.debug(request.sid)
+    app.logger.info("disconnect")
+    app.logger.info(request.sid)
     sid = request.sid
     remove_user_from_room(db, sid, get_room_id_from_user(db, sid))
     remove_user(db, sid)
@@ -49,26 +51,26 @@ def handle_disconnect():
 
 @socketio.on("connected")
 def handle_connected(data):
-    app.logger.debug("connect")
-    app.logger.debug(data)
-    app.logger.debug(request.sid)
+    app.logger.info("connected")
+    app.logger.info(data)
+    app.logger.info(request.sid)
     add_user_to_room(db, request.sid, data["room"])
     socketio.emit("connectCallback", {"data": request.sid}, room=request.sid)
 
 
 @socketio.on("disconnected")
 def handle_disconnected():
-    app.logger.debug("disconnected")
-    app.logger.debug(request.sid)
+    app.logger.info("disconnected")
+    app.logger.info(request.sid)
     sid = request.sid
     remove_user_from_room(db, sid, get_room_id_from_user(db, sid))
 
 
 @socketio.on("message")
 def handle_message(data):
-    app.logger.debug("message")
-    app.logger.debug(data)
-    app.logger.debug(request.sid)
+    app.logger.info("message")
+    app.logger.info(data)
+    app.logger.info(request.sid)
     sid = request.sid
     response = get_room_id_from_user(db, sid)
     if response == 0:

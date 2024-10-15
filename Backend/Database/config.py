@@ -1,15 +1,16 @@
 import datetime, os, secrets
 from dotenv import load_dotenv
 from Database.crud import *
+from pymongo.server_api import ServerApi
 
 load_dotenv()
 
 from pymongo.mongo_client import MongoClient
 
-uri = f"mongodb+srv://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@chatpulse.xpc1fa8.mongodb.net/?retryWrites=true&w=majority"
+uri = f"{os.getenv('DB_URL')}"
 
 # Create a new client and connect to the server
-client = MongoClient(uri)
+client = MongoClient(uri, server_api=ServerApi('1'))
 
 # Send a ping to confirm a successful connection
 try:
